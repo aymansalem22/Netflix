@@ -19,7 +19,7 @@ public interface ActorController {
 
 	NetflixResponse<ActorParticipant> AddActorToChapter(Long idActor, Long idChapters) throws NetflixException;
 
-	// the way explain in actorrest must discomment
+	// the way explain in actorrest must discommentt
 	NetflixResponse<ActorRest> AddActorToChapterAnoterOption(Long idActor, Long idChapter) throws NetflixException;
 
 	NetflixResponse<ActorRest> deleteActorById(Long id) throws NetflixException;
