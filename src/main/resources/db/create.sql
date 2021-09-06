@@ -1,0 +1,71 @@
+CREATE TABLE IF NOT EXISTS `CATEGORIES`
+(
+  `ID`          BIGINT(20)  NOT NULL AUTO_INCREMENT,
+  `NAME`        VARCHAR(60) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE INDEX `unique` (`NAME` ASC)
+);
+
+CREATE TABLE IF NOT EXISTS `TV_SHOWS`
+(
+  `ID`          	BIGINT(20)    NOT NULL AUTO_INCREMENT,
+  `NAME` 			VARCHAR(256)  NOT NULL,
+  `SHORT_DESC` 		VARCHAR(256)  NULL DEFAULT NULL,
+  `LONG_DESC` 		VARCHAR(2048) NULL DEFAULT NULL,
+  `YEAR` 			YEAR(4) 	  NOT NULL,
+  `RECOMMENDED_AGE` TINYINT 	  NOT NULL,
+  `CATEGORY_ID` 	BIGINT(20)    NOT NULL,
+  `ADVERTISING` 	VARCHAR(256)  NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `FK_TV_SHOWS_CATEGORY_ID`
+    FOREIGN KEY (CATEGORY_ID) REFERENCES `CATEGORIES` (ID)
+);
+
+CREATE TABLE IF NOT EXISTS `SEASONS`
+(
+  `ID`          BIGINT(20)   NOT NULL AUTO_INCREMENT,
+  `NUMBER` 		TINYINT 	 NOT NULL,
+  `NAME` 		VARCHAR(256) NOT NULL,
+  `TV_SHOW_ID`  BIGINT(20)   NOT NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `FK_SEASONS_TV_SHOW_ID`
+    FOREIGN KEY (TV_SHOW_ID) REFERENCES `TV_SHOWS` (ID)
+);
+
+CREATE TABLE IF NOT EXISTS `CHAPTERS`
+(
+  `ID`          BIGINT(20)   NOT NULL AUTO_INCREMENT,
+  `NUMBER` 		TINYINT 	 NOT NULL,
+  `NAME` 		VARCHAR(256) NOT NULL,
+  `DURATION` 	TINYINT 	 NOT NULL,
+  `SEASON_ID`  BIGINT(20)   NOT NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `FK_CHAPTERS_SEASON_ID`
+    FOREIGN KEY (SEASON_ID) REFERENCES `SEASONS` (ID)
+);
+
+CREATE TABLE `categories_tv_shows` (
+  `categories_id` bigint NOT NULL,
+  `tv_shows_id` bigint NOT NULL,
+  PRIMARY KEY (`categories_id`,`tv_shows_id`),
+  KEY `tv_shows_id` (`tv_shows_id`),
+  CONSTRAINT `categories_tv_shows_ibfk_1` FOREIGN KEY (`categories_id`) REFERENCES `categories` (`ID`),
+  CONSTRAINT `categories_tv_shows_ibfk_2` FOREIGN KEY (`tv_shows_id`) REFERENCES `tv_shows` (`ID`)
+);
+
+CREATE TABLE `actors` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(256) NOT NULL,
+  `AGE` bigint NOT NULL,
+  `NATIONALITY` varchar(256) NOT NULL,
+  PRIMARY KEY (`ID`)
+);
+
+CREATE TABLE IF NOT EXISTS `actors_chapters` (
+  `actors_id` bigint NOT NULL,
+  `chapters_id` bigint NOT NULL,
+  PRIMARY KEY (`actors_id`,`chapters_id`),
+  KEY `chapters_id` (`chapters_id`),
+  CONSTRAINT `actors_chapters_ibfk_1` FOREIGN KEY (`actors_id`) REFERENCES `actors` (`ID`),
+  CONSTRAINT `actors_chapters_ibfk_2` FOREIGN KEY (`chapters_id`) REFERENCES `chapters` (`ID`)
+);
