@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.everis.d4i.tutorial.entities.Actor;
+import com.everis.d4i.tutorial.entities.Chapter;
 import com.everis.d4i.tutorial.json.ActorRest;
 
 public class MockData {
@@ -14,6 +15,14 @@ public class MockData {
 		actor.setName("ali");
 		actor.setNationality("ameriacn");
 		return actor;
+	}
+	
+	public static Chapter getChapter() {
+		Chapter chapter = new Chapter();
+		chapter.setId(1L);
+		chapter.setName("Chapter 7");
+		return chapter;
+		
 	}
 	
 	public static ActorRest updategetActor() {

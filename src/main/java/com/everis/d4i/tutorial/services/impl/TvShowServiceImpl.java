@@ -151,9 +151,12 @@ public class TvShowServiceImpl implements TvShowService {
 		return tvPage;
 
 		/*
-		 * other way to do paginaton Page<TvShowRest> Page<TvShowRest>
-		 * page=tvShowRespository.findAll(page) .map(tvShow ->
-		 * modelMapper.map(tvShow,TvShowRest.class)); return page;
+		 * other way to do paginaton :
+		 * Page<TvShow> tvPage=tvShowRespository.findall(page);
+		 * List<TvShow> tvShows=tvPage.getContent();
+		 * List<TvShowRest> tvShowRest=tvShows.stream.map(tvShow -> modelMapper.map(tvShow,TvShowRest.class))
+		 * .collect(Collectors.toList());
+		 * return new PageImpl<TvShowRest>(tvShowRest,page,tvPage.getTotalElements()); 
 		 */
 	}
 

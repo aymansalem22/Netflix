@@ -1,6 +1,7 @@
 package actortest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -35,6 +36,11 @@ public class ActorServiceTesting {
 	
 	private ModelMapper modelMapper = new ModelMapper();
 
+	@Test
+	public void testGetActorsNullList()throws NetflixException{
+		when(actorRepository.findAll()).thenReturn(null);
+		assertNull(service.getActors());
+	}
 	
 	@Test
 	public void testGetActors() throws NetflixException {
@@ -57,12 +63,25 @@ public class ActorServiceTesting {
 	
 	@Test
 	public void testUpdateActor()throws NetflixException {
+		Actor actor = modelMapper.map(MockData.updategetActor(), Actor.class);
+		when(actorRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(actor));
+		when(actorRepository.save(Mockito.any(Actor.class))).thenReturn(actor);
+		assertEquals("alii", service.updateActorById(MockData.updategetActor().
+				getId(),MockData.updategetActor()).getName());
+
+	}
+	
+	public void testAddActorToChapter()throws NetflixException {
+		when(actorRepository.save(Mockito.any(Actor.class))).thenReturn(null);
+		assertEquals("Chapter 7", service.AddActorToChapter(1L,MockData.getChapter().getId()));
 		
-           
 
+	}
+	
+	public void testDeleteActor()throws NetflixException {
+		when(actorRepository.deleteById(MockData.getActor().getId()).thenReturn(null);
+		assertEquals(null, service.deleteActorById(1L));
 
-
-		
 	}
 	
 	

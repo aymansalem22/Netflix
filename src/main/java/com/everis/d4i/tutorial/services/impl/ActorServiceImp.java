@@ -38,9 +38,16 @@ public class ActorServiceImp implements ActorService {
 
 	@Override
 	public List<ActorRest> getActors() throws NetflixException {
-
-		return actorRepository.findAll().stream().map(actor -> modelMapper.map(actor, ActorRest.class))
-				.collect(Collectors.toList());
+		
+     List <Actor>actors=actorRepository.findAll();
+     //we do this check if null or not to testing when return null and bc the stream must pass not null
+     //bc stream isnt safe with nulls
+     if(actors!=null) {
+		return actors.stream().map(actor -> modelMapper.map(actor, ActorRest.class))
+				.collect(Collectors.toList());}
+     else {
+    	 return null;
+     }
 	}
 
 	@Override
@@ -91,14 +98,7 @@ public class ActorServiceImp implements ActorService {
 			return modelMapper.map(actorexists, ActorRest.class);
 		}
 		throw new NotFoundException("Actor id not found - " + id);
-//		try {
-//			actor = actorRepository.save(actor);
-//		} catch (Exception e) {
-//			LOGGER.error(ExceptionConstants.INTERNAL_SERVER_ERROR, e);
-//			throw new InternalServerErrorException(ExceptionConstants.INTERNAL_SERVER_ERROR);
-//		}
 
-		// return modelMapper.map(actorexists, ActorRest.class);
 	}
 
 	@Override
