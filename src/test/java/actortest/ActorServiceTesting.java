@@ -83,6 +83,21 @@ public class ActorServiceTesting {
 		assertEquals(null, service.deleteActorById(1L));
 
 	}
+
+		public void testAddActorToChapter()throws NetflixException {
+		when(actorRepository.saveNAMEss(Mockito.any(Actor.class))).thenReturn(null);
+		assertEquals("Chapter 7", service.AddActorToChapter(1L,MockData.getChapter().getId()));
+		
+
+	}
+	
+	public void testDeleteActor()throws NetflixException {
+		when(actorRepository.deleteByIdNamess(MockData.getActor().getId()).thenReturn(null);
+		assertEquals(null, service.deleteActorById(1L));
+
+	}
+
+
 	
 	
 }
