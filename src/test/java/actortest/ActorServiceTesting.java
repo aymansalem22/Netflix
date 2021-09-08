@@ -85,17 +85,18 @@ public class ActorServiceTesting {
 	}
 
 		public void testAddActorToChapter()throws NetflixException {
-		when(actorRepository.saveNAMEss(Mockito.any(Actor.class))).thenReturn(null);
+		when(actorRepository.saveNAME(Mockito.any(Actor.class))).thenReturn(null);
 		assertEquals("Chapter 7", service.AddActorToChapter(1L,MockData.getChapter().getId()));
 		
 
 	}
 	
 	public void testDeleteActor()throws NetflixException {
-		when(actorRepository.deleteByIdNamess(MockData.getActor().getId()).thenReturn(null);
+		when(actorRepository.deleteByIdName(MockData.getActor().getId()).thenReturn(null);
 		assertEquals(null, service.deleteActorById(1L));
 
 	}
+
 
 
 	
