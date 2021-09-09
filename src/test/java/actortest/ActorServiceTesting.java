@@ -79,12 +79,12 @@ public class ActorServiceTesting {
 
 	}
 
-//	@Test
-//	public void testDeleteActorId() throws NetflixException {
-//		when(actorRepository.findById(1L)).thenReturn(Optional.of(MockData.getActor()));
-//		service.deleteActorById(MockData.getActor().getId());
-//		verify(actorRepository).findById(MockData.getActor().getId());
-//	}
+	@Test
+	public void testDeleteActorId() throws NetflixException {
+		when(actorRepository.findById(1L)).thenReturn(Optional.of(MockData.getActor()));
+		service.deleteActorById(MockData.getActor().getId());
+		verify(actorRepository).findById(MockData.getActor().getId());
+	}
 //
 //	@Test
 //	void deleteActorById_throwsExceptionIfIDNotFound() throws NetflixException {
