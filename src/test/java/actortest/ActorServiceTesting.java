@@ -102,14 +102,14 @@ public class ActorServiceTesting {
 //	}
 	
 	@Test
-	 void AddActorToChapters() throws NetflixException{
+	 void testAddActorToChapters() throws NetflixException{
 		when(actorRepository.findById(1L)).thenReturn(Optional.of(MockData.getActor()));
 		when(chapterService.findChapterById(MockData.getChapter().getId())).thenReturn((MockData.getChapter()));
 		//MockData.getActor().getChapters().add(MockData.getChapter());
 	ActorParticipant actorRest = modelMapper.map(MockData.getActor(), ActorParticipant.class);
 		 actorRest= service.AddActorToChapter(1L, 1L);
 		 actorRepository.save(MockData.getActor());
-			assertEquals(1, actorRest.getChapters().size());
+			assertEquals(1, MockData.getActor().getChapters().size());
 //		  when(actorRepository.findById(1L)).thenReturn(Optional.of(MockData.getActor()));
 //	        when(chapterService.findChapterById(1L)).thenReturn((MockData.getChapter()));
 //	        service.AddActorToChapter(1L, 1L);

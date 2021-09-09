@@ -14,7 +14,6 @@ public class MockData {
 		actor.setId(1L);
 		actor.setName("ali");
 		actor.setNationality("ameriacn");
-		
 		return actor;
 	}
 	
