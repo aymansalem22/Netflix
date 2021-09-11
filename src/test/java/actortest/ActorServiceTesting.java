@@ -46,7 +46,7 @@ public class ActorServiceTesting {
 		when(actorRepository.findAll()).thenReturn(null);
 		assertNull(service.getActors());
 	}
-
+//ok
 	@Test
 	public void testGetActors() throws NetflixException {
 		when(actorRepository.findAll()).thenReturn(MockData.getActorList());
