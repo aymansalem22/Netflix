@@ -8,19 +8,22 @@ import com.everis.d4i.tutorial.entities.Chapter;
 import com.everis.d4i.tutorial.json.ActorRest;
 
 public class MockData {
-
-	public static Actor getActor() {
+	
+		public static Actor getActor() {
 		Actor actor = new Actor();
 		actor.setId(1L);
 		actor.setName("ali");
-		actor.setNationality("ameriacn");
+		actor.setNationality("ameriacn");	
+		
 		return actor;
 	}
 	
+
 	public static Chapter getChapter() {
 		Chapter chapter = new Chapter();
 		chapter.setId(1L);
 		chapter.setName("Chapter 7");
+		
 		return chapter;
 		
 	}
