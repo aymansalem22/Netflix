@@ -1,4 +1,5 @@
 package actortest;
+
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -7,7 +8,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -17,10 +17,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
 
 import com.everis.d4i.tutorial.entities.Actor;
-import com.everis.d4i.tutorial.entities.Chapter;
 import com.everis.d4i.tutorial.exceptions.NetflixException;
 import com.everis.d4i.tutorial.exceptions.NotFoundException;
-import com.everis.d4i.tutorial.json.ActorParticipant;
 import com.everis.d4i.tutorial.repositories.ActorRepositoy;
 import com.everis.d4i.tutorial.services.ChapterService;
 import com.everis.d4i.tutorial.services.impl.ActorServiceImp;
@@ -46,7 +44,7 @@ public class ActorServiceTesting {
 		when(actorRepository.findAll()).thenReturn(null);
 		assertNull(service.getActors());
 	}
-//ok
+
 	@Test
 	public void testGetActors() throws NetflixException {
 		when(actorRepository.findAll()).thenReturn(MockData.getActorList());
@@ -85,8 +83,7 @@ public class ActorServiceTesting {
 
 	@Test
 	public void deleteActorById_throwsExceptionIfIDNotFound() throws NetflixException {
-		assertThatExceptionOfType(NotFoundException.class).isThrownBy(()
-				-> service.deleteActorById(1L))
+		assertThatExceptionOfType(NotFoundException.class).isThrownBy(() -> service.deleteActorById(1L))
 				.withMessage("Actor id not found - 1");
 
 	}
@@ -97,30 +94,16 @@ public class ActorServiceTesting {
 		service.deleteActorById(MockData.getActor().getId());
 		verify(actorRepository).delete(MockData.getActor());
 	}
-	
+
 	@Test
-	public void testAddActorToChapters() throws NetflixException{
+	public void testAddActorToChapters() throws NetflixException {
 
 		when(actorRepository.findById(1L)).thenReturn(Optional.of(MockData.getActor()));
-	
 
 		when(chapterService.findChapterById(MockData.getChapter().getId())).thenReturn((MockData.getChapter()));
-	
-	ActorParticipant actorRest = modelMapper.map(MockData.getActor(), ActorParticipant.class);
-		 actorRest= service.AddActorToChapter(1L, 1L);
-		 actorRepository.save(MockData.getActor());
-		 verify(actorRepository).existsByIdAndChapters_Id(1L, 1L);
-	}
-	
+		service.AddActorToChapter(1L, 1L);
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		verify(actorRepository).existsByIdAndChapters_Id(1L, 1L);
+	}
+
 }

@@ -22,10 +22,10 @@ public interface TvShowRepository extends JpaRepository<TvShow, Long>, JpaSpecif
 
 	boolean existsByIdAndCategories_Id(Long tvShowId, Long categoryId);
 
-	//same the below 
+	// same the below
 	@Query(value = "SELECT  t from TvShow t where t.year > :value")
 	public List<TvShow> findAllByNames(@Param("value") String name);
-	
+
 	public List<TvShow> findAllByName(String name);
 
 }

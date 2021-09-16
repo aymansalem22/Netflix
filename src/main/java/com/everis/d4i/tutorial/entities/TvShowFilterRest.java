@@ -1,7 +1,5 @@
 package com.everis.d4i.tutorial.entities;
 
-import java.time.Year;
-
 public class TvShowFilterRest {
 
 	String name;

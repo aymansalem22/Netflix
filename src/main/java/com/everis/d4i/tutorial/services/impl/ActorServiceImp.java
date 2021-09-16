@@ -38,16 +38,16 @@ public class ActorServiceImp implements ActorService {
 
 	@Override
 	public List<ActorRest> getActors() throws NetflixException {
-		
-     List <Actor>actors=actorRepository.findAll();
-     //we do this check if null or not to testing when return null and bc the stream must pass not null
-     //bc stream isnt safe with nulls
-     if(actors!=null) {
-		return actors.stream().map(actor -> modelMapper.map(actor, ActorRest.class))
-				.collect(Collectors.toList());}
-     else {
-    	 return null;
-     }
+
+		List<Actor> actors = actorRepository.findAll();
+		// we do this check if null or not to testing when return null and bc the stream
+		// must pass not null
+		// bc stream isnt safe with nulls
+		if (actors != null) {
+			return actors.stream().map(actor -> modelMapper.map(actor, ActorRest.class)).collect(Collectors.toList());
+		} else {
+			return null;
+		}
 	}
 
 	@Override

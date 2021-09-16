@@ -14,7 +14,7 @@ public class MockData {
 		actor.setId(1L);
 		actor.setName("ali");
 		actor.setNationality("ameriacn");	
-		
+		actor.setChapters(getChapterList());
 		return actor;
 	}
 	
@@ -49,5 +49,12 @@ public class MockData {
 		actors.add(getActor());
 		actors.add(getActor());
 		return actors;
+	}
+	
+	public static List<Chapter> getChapterList() {
+		List<Chapter> chapters = new ArrayList<Chapter>();
+		chapters.add(getChapter());
+		chapters.add(getChapter());
+		return chapters;
 	}
 }
