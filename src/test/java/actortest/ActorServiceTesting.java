@@ -98,12 +98,20 @@ public class ActorServiceTesting {
 	@Test
 	public void testAddActorToChapters() throws NetflixException {
 
-		when(actorRepository.findById(1L)).thenReturn(Optional.of(MockData.getActor()));
+		when(actorRepository.findById(MockData.getActor().getId())).thenReturn(Optional.of(MockData.getActor()));
 
 		when(chapterService.findChapterById(MockData.getChapter().getId())).thenReturn((MockData.getChapter()));
-		service.AddActorToChapter(1L, 1L);
+		service.AddActorToChapter(MockData.getActor().getId(), MockData.getChapter().getId());
 
-		verify(actorRepository).existsByIdAndChapters_Id(1L, 1L);
+		verify(actorRepository).existsByIdAndChapters_Id(MockData.getActor().getId(), MockData.getChapter().getId());
+	}
+
+	@Test
+	public void testActorById_throwsExceptionIfIDNotFoundd() throws NetflixException {
+		assertThatExceptionOfType(NotFoundException.class).isThrownBy(() -> service.AddActorToChapter(4L, 1L))
+		.withMessage("Actor id not found - 4");
+		
+
 	}
 
 }
