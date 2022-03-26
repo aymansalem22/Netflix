@@ -81,8 +81,8 @@ public class ActorServiceImp implements ActorService {
 		try {
 			actor = actorRepository.save(actor);
 		} catch (Exception e) {
-			LOGGER.error(ExceptionConstants.INTERNAL_SERVER_ERROR, e);
-			throw new InternalServerErrorException(ExceptionConstants.INTERNAL_SERVER_ERROR);
+			
+			throw new DuplicateException("Actor name  found - "+actor.getName() );
 		}
 
 		return modelMapper.map(actor, ActorRest.class);

@@ -2,6 +2,8 @@ package com.everis.d4i.tutorial.controllers.impl;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -50,7 +52,7 @@ public class ActorControllerImp implements ActorController {
 	@Override
 	@ResponseStatus(HttpStatus.OK)
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public NetflixResponse<ActorRest> CreateActor(@RequestBody ActorRest actorRest) throws NetflixException {
+	public NetflixResponse<ActorRest> CreateActor( @RequestBody ActorRest actorRest) throws NetflixException {
 
 		return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
 				actorService.createActor(actorRest));

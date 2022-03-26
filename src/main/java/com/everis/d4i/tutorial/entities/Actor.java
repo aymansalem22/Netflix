@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "actors")
 public class Actor implements Serializable {
@@ -30,7 +31,7 @@ public class Actor implements Serializable {
 	@Column(name = "AGE", unique = true)
 	private Long age;
 
-	@Column(name = "NATIONALITY", unique = true)
+	@Column(name = "NATIONALITY")
 	private String nationality;
 
 	@ManyToMany(fetch = FetchType.LAZY)

@@ -2,6 +2,7 @@ package actortest;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -100,10 +101,9 @@ public class ActorServiceTesting {
 
 		when(actorRepository.findById(MockData.getActor().getId())).thenReturn(Optional.of(MockData.getActor()));
 
-		when(chapterService.findChapterById(MockData.getChapter().getId())).thenReturn((MockData.getChapter()));
-		service.AddActorToChapter(MockData.getActor().getId(), MockData.getChapter().getId());
-
-		verify(actorRepository).existsByIdAndChapters_Id(MockData.getActor().getId(), MockData.getChapter().getId());
+		when(chapterService.findChapterById(MockData.getChapter2().getId())).thenReturn((MockData.getChapter2()));
+		service.AddActorToChapter(MockData.getActor().getId(), MockData.getChapter2().getId());
+		verify(actorRepository).existsByIdAndChapters_Id(MockData.getActor().getId(),MockData.getChapter2().getId());
 	}
 
 	@Test

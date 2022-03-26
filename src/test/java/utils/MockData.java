@@ -28,6 +28,14 @@ public class MockData {
 		
 	}
 	
+	public static Chapter getChapter2() {
+		Chapter chapter2 = new Chapter();
+		chapter2.setId(3L);
+		chapter2.setName("Chapter 9");
+		return chapter2;
+		
+	}
+
 	public static ActorRest updategetActor() {
 		ActorRest ActorRest1 = new ActorRest();
 		ActorRest1.setId(MockData.getActor().getId());
@@ -55,6 +63,7 @@ public class MockData {
 		List<Chapter> chapters = new ArrayList<Chapter>();
 		chapters.add(getChapter());
 		chapters.add(getChapter());
+		
 		return chapters;
 	}
 }
