@@ -1,4 +1,9 @@
 ### Netflix 1 Bootcamp.
 
-Read [TUTORIAL](docs/tutorial Netflix v0.3.pptx) to learn about Spring Boot.
+Spring Boot rest api 
+- swagger
+- postman
+- json
+- jpa
+- ModelMapper
 
